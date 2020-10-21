@@ -39,7 +39,7 @@ db.firstnames.mapReduce(
     function () { if (this.year == 1995) emit(this.firstname, this.amount) },
     function (k, v) { return Array.sum(v) },
     { out: "temp" }
-).find().sort({ value: -1 })
+).find().sort({ value: -1 }).limit(10)
 
 db.temp.drop()
 

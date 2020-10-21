@@ -24,6 +24,6 @@ db.smartphones.updateOne({ name: /.*iPhone.*/i }, { $set: { wifi: ["802.11b", "8
 db.smartphones.find({
     $and: [
         { organizer: { $in: ["Phonebook", "Clock"]}},
-        { organizer: { $nin: "Call list", "Calculator"]}}
+        { organizer: { $nin: ["Call list", "Calculator"]}}
     ]
 })

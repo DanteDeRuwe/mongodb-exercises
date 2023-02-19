@@ -31,8 +31,8 @@ db.zips.aggregate([
 
 // 4 Return the top 5 states with the most number of cities
 db.zips.aggregate([
-    { $project: { state: true, city: true } }, // optional, but we only need these 2 fields
-    { $group: { _id: "$state", numberOfCities: { $sum: 1 } } }, //count every time a state is mentioned, as this means a city is present
+    { $group: { _id: { state: true, city: true } } }, // get unique state, city pairs
+    { $group: { _id: "$_id.state", numberOfCities: { $sum: 1 } } }, //count every time a state is mentioned, as this means a city is present
     { $sort: { numberOfCities: -1 } }, //sort large to small
     { $limit: 5 } //get top 5
 ])
